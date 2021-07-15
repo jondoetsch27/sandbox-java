@@ -21,7 +21,6 @@ public class RockPaperScissors {
   }
 
   public String play(String player1, String player2) {
-    List<String> test = Arrays.stream(validMoves).collect(Collectors.toList());
     if (!Arrays.stream(validMoves).sorted().collect(Collectors.toList()).contains(player1)
         && !Arrays.stream(validMoves).sorted().collect(Collectors.toList()).contains(player2)) {
       throw new RuntimeException("Invalid move by both players");
