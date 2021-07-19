@@ -23,13 +23,14 @@ public class PlayerServiceTest {
   }
 
   @ParameterizedTest
-  @CsvSource(delimiter = ':',
+  @CsvSource(
+      delimiter = ':',
       value = {
-      "Russell Wilson:3:false",
-      "Josh Allen:17:true",
-      "Kyler Murray:11:false",
-      "Trevor Lawrence:16:false"
-  })
+        "Russell Wilson:3:false",
+        "Josh Allen:17:true",
+        "Kyler Murray:11:false",
+        "Trevor Lawrence:16:false"
+      })
   public void queryPlayerTest(String playerName, String playerNumber, boolean expectedResult) {
     Player playerInputTarget = new Player(playerName, playerNumber);
     Player[] players =
