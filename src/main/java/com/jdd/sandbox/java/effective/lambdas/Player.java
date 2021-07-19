@@ -1,6 +1,6 @@
 package com.jdd.sandbox.java.effective.lambdas;
 
-public class Player {
+public class Player implements Comparable<Player> {
 
   private String playerName;
   private String playerNumber;
@@ -24,5 +24,14 @@ public class Player {
 
   public void setPlayerNumber(String playerNumber) {
     this.playerNumber = playerNumber;
+  }
+
+  @Override
+  public int compareTo(Player player) {
+    if (this.getPlayerName().compareTo(player.getPlayerName()) == 0) {
+      return this.getPlayerNumber().compareTo(player.getPlayerNumber());
+    } else {
+      return this.getPlayerName().compareTo(player.getPlayerName());
+    }
   }
 }
