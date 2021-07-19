@@ -6,7 +6,7 @@ public class PlayerService {
 
   public Player getPlayer() {
     PlayerSupplier playerSupplier = () -> {
-      return new Player("Josh Allen", "17");
+      return new Player("Josh Allen", "17", "BUF");
     };
     return playerSupplier.get();
   }
