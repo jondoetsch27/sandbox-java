@@ -16,11 +16,21 @@ public class PlayerService {
             });
   }
 
-  public List<Player> filteredPlayerList(List<Player> playerList, String playerTeam) {
+  public List<Player> filterPlayerList(List<Player> playerList, String playerTeam) {
     return playerList.stream()
         .filter(
             player -> {
               return player.getPlayerTeam().contains(playerTeam);
+            })
+        .collect(Collectors.toList());
+  }
+
+  public List<Player> cleanPlayerList(List<Player> playerList) {
+    return playerList.stream()
+        .map(
+            player -> {
+              player.setPlayerTeam(player.getPlayerTeam().toUpperCase());
+              return player;
             })
         .collect(Collectors.toList());
   }

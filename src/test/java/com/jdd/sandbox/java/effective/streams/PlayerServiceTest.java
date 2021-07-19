@@ -63,15 +63,25 @@ public class PlayerServiceTest {
         "Kyler Murray:1:ARI:BUF:false",
         "Justin Herbert:11:LAC:LAC:true"
       })
-  public void filteredPlayerListTest(
+  public void filterPlayerListTest(
       String playerName,
       String playerNumber,
       String playerTeam,
       String targetTeam,
       boolean expectedResult) {
     Player playerInputTarget = new Player(playerName, playerNumber, playerTeam);
-    List<Player> filteredPlayerList = subject.filteredPlayerList(playerInputList, targetTeam);
+    List<Player> filteredPlayerList = subject.filterPlayerList(playerInputList, targetTeam);
     boolean actualResult = filteredPlayerList.contains(playerInputTarget);
     assertEquals(expectedResult, actualResult);
+  }
+
+  @Test
+  public void cleanPlayerListTest() {
+    playerInputList = subject.cleanPlayerList(playerInputList);
+    for (Player player: playerInputList) {
+      for (char c: player.getPlayerTeam().toCharArray()) {
+        assertTrue(Character.isUpperCase(c));
+      }
+    }
   }
 }
