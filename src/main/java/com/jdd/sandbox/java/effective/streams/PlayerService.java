@@ -27,11 +27,7 @@ public class PlayerService {
 
   public List<Player> cleanPlayerList(List<Player> playerList) {
     return playerList.stream()
-        .map(
-            player -> {
-              player.setPlayerTeam(player.getPlayerTeam().toUpperCase());
-              return player;
-            })
+        .peek(player -> player.setPlayerTeam(player.getPlayerTeam().toUpperCase()))
         .collect(Collectors.toList());
   }
 }
