@@ -17,10 +17,25 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class PlayerServiceTest {
 
   private PlayerService subject;
+  private List<Player> playerInputList;
 
   @BeforeEach
   public void setUp() {
     subject = new PlayerService();
+    Player[] players =
+        new Player[] {
+          new Player("Kyler Murray", "1", "ARI"),
+          new Player("Josh Allen", "17", "BUF"),
+          new Player("Devin Singletary", "26", "BUF"),
+          new Player("Zack Moss", "20", "BUF"),
+          new Player("Stefon Diggs", "14", "BUF"),
+          new Player("Emmanuel Sanders", "1", "BUF"),
+          new Player("Cole Beasley", "11", "BUF"),
+          new Player("Dawson Knox", "88", "BUF"),
+          new Player("Justin Herbert", "11", "LAC"),
+          new Player("Matthew Stafford", "9", "LAR")
+        };
+    playerInputList = Arrays.stream(players).sorted().collect(Collectors.toList());
   }
 
   @ParameterizedTest
@@ -28,21 +43,13 @@ public class PlayerServiceTest {
       delimiter = ':',
       value = {
         "Russell Wilson:3:SEA:false",
-        "Josh Allen:17:BUF:true",
-        "Kyler Murray:11:ARI:false",
-        "Trevor Lawrence:16:JAX:false"
+        "Kyler Murray:1:ARI:true",
+        "Trevor Lawrence:16:JAX:false",
+        "Matthew Stafford:9:LAL:true"
       })
   public void queryPlayerTest(
-      String playerName, String playerNumber, boolean expectedResult, String playerTeam) {
+      String playerName, String playerNumber, String playerTeam, boolean expectedResult) {
     Player playerInputTarget = new Player(playerName, playerNumber, playerTeam);
-    Player[] players =
-        new Player[] {
-          new Player("Josh Allen", "17", "BUF"),
-          new Player("Kyler Murray", "1", "ARI"),
-          new Player("Justin Herbert", "11", "LAC"),
-          new Player("Matthew Stafford", "9", "LAR")
-        };
-    List<Player> playerInputList = Arrays.stream(players).sorted().collect(Collectors.toList());
     boolean actualResult = subject.queryPlayer(playerInputList, playerInputTarget);
     assertEquals(expectedResult, actualResult);
   }
@@ -63,19 +70,6 @@ public class PlayerServiceTest {
       String targetTeam,
       boolean expectedResult) {
     Player playerInputTarget = new Player(playerName, playerNumber, playerTeam);
-    Player[] players =
-        new Player[] {
-          new Player("Kyler Murray", "1", "ARI"),
-          new Player("Josh Allen", "17", "BUF"),
-          new Player("Devin Singletary", "26", "BUF"),
-          new Player("Zack Moss", "20", "BUF"),
-          new Player("Stefon Diggs", "14", "BUF"),
-          new Player("Emmanuel Sanders", "1", "BUF"),
-          new Player("Cole Beasley", "11", "BUF"),
-          new Player("Dawson Knox", "88", "BUF"),
-          new Player("Justin Herbert", "11", "LAC")
-        };
-    List<Player> playerInputList = Arrays.stream(players).sorted().collect(Collectors.toList());
     List<Player> filteredPlayerList = subject.filteredPlayerList(playerInputList, targetTeam);
     boolean actualResult = filteredPlayerList.contains(playerInputTarget);
     assertEquals(expectedResult, actualResult);
