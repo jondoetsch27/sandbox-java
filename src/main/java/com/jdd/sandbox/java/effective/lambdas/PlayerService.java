@@ -1,13 +1,9 @@
 package com.jdd.sandbox.java.effective.lambdas;
 
-public class PlayerService {
+public interface PlayerService {
 
-  private PlayerSupplier playerSupplier;
+  public Player getPlayer();
 
-  public Player getPlayer() {
-    PlayerSupplier playerSupplier = () -> {
-      return new Player("Josh Allen", "17", "BUF");
-    };
-    return playerSupplier.get();
-  }
+  public Player createRandomPlayer();
+
 }

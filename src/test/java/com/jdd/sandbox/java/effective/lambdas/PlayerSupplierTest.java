@@ -1,5 +1,7 @@
 package com.jdd.sandbox.java.effective.lambdas;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -7,17 +9,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerSupplierTest {
 
-  private PlayerService playerService;
+  private PlayerServiceImpl subject;
 
   @BeforeEach
   public void setUp() {
-    playerService = new PlayerService();
+    subject = new PlayerServiceImpl();
   }
 
   @Test
   public void getPlayerTest() {
     String expectedResult = "Josh Allen";
-    String actualResult = playerService.getPlayer().getPlayerName();
+    String actualResult = subject.getPlayer().getPlayerName();
     assertEquals(expectedResult, actualResult);
+  }
+
+  @Test
+  public void createRandomPlayerTest() {
+    Player testPlayer = subject.createRandomPlayer();
+    System.out.println(testPlayer.toString());
+    for (char c: testPlayer.getPlayerTeam().toCharArray()) {
+      assertTrue(Character.isUpperCase(c));
+    }
   }
 }

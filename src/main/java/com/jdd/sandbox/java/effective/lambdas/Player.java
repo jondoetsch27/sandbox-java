@@ -52,4 +52,13 @@ public class Player implements Comparable<Player> {
         && ((Player) object).getPlayerName().equals(this.getPlayerName())
         && ((Player) object).getPlayerNumber().equals(this.getPlayerNumber());
   }
+
+  @Override
+  public String toString() {
+    return "Player{" +
+        "playerName='" + playerName + '\'' +
+        ", playerNumber='" + playerNumber + '\'' +
+        ", playerTeam='" + playerTeam + '\'' +
+        '}';
+  }
 }
