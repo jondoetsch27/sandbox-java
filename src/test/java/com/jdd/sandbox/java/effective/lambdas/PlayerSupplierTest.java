@@ -31,4 +31,10 @@ public class PlayerSupplierTest {
       assertTrue(Character.isUpperCase(c));
     }
   }
+
+  @Test
+  public void createPlayerTest() {
+    Player testPlayer = subject.createRandomPlayer();
+    System.out.println(testPlayer.toString());
+  }
 }
