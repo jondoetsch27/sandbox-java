@@ -20,7 +20,6 @@ public class PlayerServiceImpl implements PlayerService {
           new Player("Kyler Murray", "1", "ARI"),
           new Player("Patrick Mahomes", "15", "KCC")
         };
-
     possibleTeams =
         new String[] {
           "ARI", "ATL", "BAL", "BUF", "CAR", "CIN", "CHI", "CLE", "DAL", "DEN", "DET", "GBP", "HOU",
