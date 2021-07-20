@@ -28,8 +28,8 @@ public class PlayerServiceImpl implements PlayerService {
         };
     possibleNames =
         new String[][] {
-          {"Anthony", "Brian", "James", "Josh", "Matthew", "Sam", "Trevor", "Tyler"},
-          {"Allen", "Barber", "Brown", "Jones", "Lawrence", "Michaels", "Roberts", "Smith"}
+          new String[] {"Anthony", "Brian", "James", "Josh", "Matthew", "Sam", "Trevor", "Tyler"},
+          new String[] {"Allen", "Barber", "Brown", "Jones", "Lawrence", "Michaels", "Roberts", "Smith"}
         };
   }
 
