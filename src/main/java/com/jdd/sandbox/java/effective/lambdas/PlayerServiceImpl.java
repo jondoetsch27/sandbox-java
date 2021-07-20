@@ -1,16 +1,26 @@
 package com.jdd.sandbox.java.effective.lambdas;
 
+import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class PlayerServiceImpl implements PlayerService {
 
   private OldPlayerSupplier oldPlayerSupplier;
   private PlayerSupplier playerSupplier;
   private UniformSupplier uniformSupplier;
+  private static final Player[] playerList;
   private static final String[] possibleTeams;
   private static final String[][] possibleNames;
 
   static {
+    playerList =
+        new Player[] {
+          new Player("Josh Allen", "17", "BUF"),
+          new Player("Kyler Murray", "1", "ARI"),
+          new Player("Patrick Mahomes", "15", "KCC")
+        };
+
     possibleTeams =
         new String[] {
           "ARI", "ATL", "BAL", "BUF", "CAR", "CIN", "CHI", "CLE", "DAL", "DEN", "DET", "GBP", "HOU",
@@ -44,5 +54,14 @@ public class PlayerServiceImpl implements PlayerService {
               possibleTeams[new Random().nextInt(possibleTeams.length - 1)]);
         };
     return playerSupplier.supplyPlayer(99);
+  }
+
+  public void listPlayers() {
+    Arrays.stream(playerList)
+        .collect(Collectors.toList())
+        .forEach(
+            (player) -> {
+              System.out.println(player);
+            });
   }
 }

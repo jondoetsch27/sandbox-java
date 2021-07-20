@@ -37,4 +37,9 @@ public class PlayerSupplierTest {
     Player testPlayer = subject.createRandomPlayer();
     System.out.println(testPlayer.toString());
   }
+
+  @Test
+  public void listPlayersTest() {
+    subject.listPlayers();
+  }
 }
