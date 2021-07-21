@@ -16,4 +16,14 @@ public class ConcurrentPlayerServiceTest {
   public void executeTaskTest() {
     subject.executeTask();
   }
+
+  @Test
+  public void executeMultipleTasksTest() {
+    Runnable[] tasks =
+        new Runnable[]{
+            new CoachTask(),
+            new PlayerTask(),
+        };
+    subject.executeMultipleTasks(tasks);
+  }
 }
