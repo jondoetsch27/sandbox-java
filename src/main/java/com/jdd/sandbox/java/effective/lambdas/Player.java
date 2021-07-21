@@ -55,8 +55,8 @@ public class Player implements Comparable<Player> {
 
   @Override
   public int hashCode() {
-    int result = Short.hashCode(Short.parseShort(this.playerName));
-    result += Short.hashCode(Short.parseShort(this.playerNumber));
+    int result = 31 * Short.hashCode(Short.parseShort(this.playerName));
+    result += 31 * Short.hashCode(Short.parseShort(this.playerNumber));
     return result;
   }
 

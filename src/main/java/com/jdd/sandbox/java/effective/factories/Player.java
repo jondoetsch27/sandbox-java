@@ -15,5 +15,4 @@ public class Player {
   public static Player getInstance(String playerName, String playerNumber, String playerTeam) {
     return new Player(playerName, playerNumber, playerTeam);
   }
-
 }
