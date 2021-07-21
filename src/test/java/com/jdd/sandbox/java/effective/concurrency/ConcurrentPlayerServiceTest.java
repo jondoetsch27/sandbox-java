@@ -26,4 +26,9 @@ public class ConcurrentPlayerServiceTest {
         };
     subject.executeMultipleTasks(tasks);
   }
+
+  @Test
+  public void executeTaskWithExecutorTest() {
+    subject.executeTaskWithExecutor(new PlayerTask());
+  }
 }

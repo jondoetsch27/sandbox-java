@@ -1,13 +1,18 @@
 package com.jdd.sandbox.java.effective.concurrency;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ConcurrentPlayerService {
 
   private static final Executor executor;
+  private static final ExecutorService executorService;
 
   static {
     executor = new PlayerTaskExecutor();
+    executorService = Executors.newFixedThreadPool(10);
   }
 
   public void executeTask() {
@@ -27,6 +32,15 @@ public class ConcurrentPlayerService {
     try {
       firstTask.join();
       secondTask.join();
+    } catch (InterruptedException exception) {
+      throw new RuntimeException(exception);
+    }
+  }
+
+  public void executeTaskWithExecutor(Runnable task) {
+    executorService.submit(task);
+    try {
+    executorService.awaitTermination(5000, TimeUnit.MILLISECONDS);
     } catch (InterruptedException exception) {
       throw new RuntimeException(exception);
     }
