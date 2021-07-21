@@ -16,4 +16,10 @@ public class ConcurrentPlayerService {
           System.out.println("Test");
         });
   }
+
+  public void executeMultipleTasks(Runnable[] tasks) {
+    for (Runnable task: tasks) {
+      task.run();
+    }
+  }
 }
