@@ -54,6 +54,13 @@ public class Player implements Comparable<Player> {
   }
 
   @Override
+  public int hashCode() {
+    int result = Short.hashCode(Short.parseShort(this.playerName));
+    result += Short.hashCode(Short.parseShort(this.playerNumber));
+    return result;
+  }
+
+  @Override
   public String toString() {
     return "Player{" +
         "playerName='" + playerName + '\'' +
