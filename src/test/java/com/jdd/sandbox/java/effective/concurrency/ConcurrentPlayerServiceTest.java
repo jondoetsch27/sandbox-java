@@ -48,4 +48,17 @@ public class ConcurrentPlayerServiceTest {
         };
     subject.executeMultipleCallableTasks(Stream.of(callableTasks).collect(Collectors.toList()));
   }
+
+  @Test
+  public void executeMultiplePlayerTasksTest() {
+    var playerTasks =
+        new CallablePlayerTask[] {
+          new CallablePlayerTask(),
+          new CallablePlayerTask(),
+          new CallablePlayerTask(),
+          new CallablePlayerTask(),
+          new CallablePlayerTask()
+        };
+    subject.executeMultiplePlayerTasks(Stream.of(playerTasks).collect(Collectors.toList()));
+  }
 }
