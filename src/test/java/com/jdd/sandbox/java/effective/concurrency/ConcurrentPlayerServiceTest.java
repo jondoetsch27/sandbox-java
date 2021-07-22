@@ -19,7 +19,7 @@ public class ConcurrentPlayerServiceTest {
 
   @Test
   public void executeMultipleTasksTest() {
-    Runnable[] tasks =
+    var tasks =
         new Runnable[] {
             new CoachTask(),
             new PlayerTask(),
