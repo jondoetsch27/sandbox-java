@@ -13,8 +13,7 @@ import java.util.stream.Collectors;
 
 public class ConcurrentPlayerService {
 
-  private static final ExecutorService executorService
-      = Executors.newCachedThreadPool();
+  private static final ExecutorService executorService = Executors.newCachedThreadPool();
 
   public void executeRunnableTask(Runnable task) {
     executorService.submit(task);
@@ -27,7 +26,7 @@ public class ConcurrentPlayerService {
   }
 
   public void executeMultipleRunnableTasks(Runnable[] tasks) {
-    for (Runnable task: tasks) {
+    for (Runnable task : tasks) {
       executorService.submit(task);
     }
   }
@@ -44,13 +43,30 @@ public class ConcurrentPlayerService {
   public void executeMultipleCallableTasks(List<Callable<String>> tasks) {
     try {
       List<Future<String>> futures = executorService.invokeAll(tasks);
-      futures.forEach((future) -> {
-        try {
-          System.out.println(future.get());
-        } catch (Exception exception) {
-          throw new RuntimeException(exception);
-        }
-      });
+      futures.forEach(
+          (future) -> {
+            try {
+              System.out.println(future.get());
+            } catch (Exception exception) {
+              throw new RuntimeException(exception);
+            }
+          });
+    } catch (Exception exception) {
+      throw new RuntimeException(exception);
+    }
+  }
+
+  public void executeMultiplePlayerTasks(List<Callable<Player>> playerTasks) {
+    try {
+      List<Future<Player>> futures = executorService.invokeAll(playerTasks);
+      futures.forEach(
+          (future) -> {
+            try {
+              System.out.println(future.get());
+            } catch (Exception exception) {
+              throw new RuntimeException(exception);
+            }
+          });
     } catch (Exception exception) {
       throw new RuntimeException(exception);
     }
