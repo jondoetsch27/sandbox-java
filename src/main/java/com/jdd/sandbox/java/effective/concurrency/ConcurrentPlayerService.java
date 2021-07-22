@@ -12,7 +12,7 @@ public class ConcurrentPlayerService {
 
   static {
     executor = new PlayerTaskExecutor();
-    executorService = Executors.newFixedThreadPool(10);
+    executorService = Executors.newCachedThreadPool();
   }
 
   public void executeTask() {
@@ -40,7 +40,8 @@ public class ConcurrentPlayerService {
   public void executeTaskWithExecutor(Runnable task) {
     executorService.submit(task);
     try {
-    executorService.awaitTermination(5000, TimeUnit.MILLISECONDS);
+      executorService.awaitTermination(5000, TimeUnit.MILLISECONDS);
+      executorService.shutdown();
     } catch (InterruptedException exception) {
       throw new RuntimeException(exception);
     }

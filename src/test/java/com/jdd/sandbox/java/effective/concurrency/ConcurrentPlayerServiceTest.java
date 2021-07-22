@@ -20,7 +20,7 @@ public class ConcurrentPlayerServiceTest {
   @Test
   public void executeMultipleTasksTest() {
     Runnable[] tasks =
-        new Runnable[]{
+        new Runnable[] {
             new CoachTask(),
             new PlayerTask(),
         };
