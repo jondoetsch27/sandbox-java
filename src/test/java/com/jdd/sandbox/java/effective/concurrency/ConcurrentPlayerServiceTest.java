@@ -1,5 +1,9 @@
 package com.jdd.sandbox.java.effective.concurrency;
 
+import java.util.Arrays;
+import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,22 +17,35 @@ public class ConcurrentPlayerServiceTest {
   }
 
   @Test
-  public void executeTaskTest() {
-    subject.executeTask();
-  }
-
-  @Test
-  public void executeMultipleTasksTest() {
+  public void executeRunnableTasksTest() {
     var tasks =
         new Runnable[] {
-            new CoachTask(),
-            new PlayerTask(),
+          new CoachTask(), new PlayerTask(),
         };
-    subject.executeMultipleTasks(tasks);
+    subject.executeMultipleRunnableTasks(tasks);
   }
 
   @Test
-  public void executeTaskWithExecutorTest() {
-    subject.executeTaskWithExecutor(new PlayerTask());
+  public void executeRunnableTaskTest() {
+    subject.executeRunnableTask(new PlayerTask());
+  }
+
+  @Test
+  public void executeCallableTaskTest() {
+    var callableTask = new SimpleCallableTask();
+    subject.executeCallableTask(callableTask);
+  }
+
+  @Test
+  public void executeMultipleCallableTasksTest() {
+    var callableTasks =
+        new SimpleCallableTask[] {
+          new SimpleCallableTask(),
+          new SimpleCallableTask(),
+          new SimpleCallableTask(),
+          new SimpleCallableTask(),
+          new SimpleCallableTask()
+        };
+    subject.executeMultipleCallableTasks(Stream.of(callableTasks).collect(Collectors.toList()));
   }
 }
