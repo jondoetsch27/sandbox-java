@@ -51,8 +51,6 @@ public class ConcurrentPlayerServiceTest {
 
   @Test
   public void executeMultiplePlayerTasksTest() {
-    System.out.println("Elleanore");
-    System.out.println("jon is a stinky poo but;3");
     var playerTasks =
         new CallablePlayerTask[] {
           new CallablePlayerTask(),
