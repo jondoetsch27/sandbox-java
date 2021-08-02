@@ -18,7 +18,9 @@ public class ConcurrentPlayerService {
   public void executeRunnableTask(Runnable task) {
     executorService.submit(task);
     try {
-      executorService.awaitTermination(5000, TimeUnit.MILLISECONDS);
+      if (!executorService.awaitTermination(5000, TimeUnit.MILLISECONDS)) {
+        System.out.println("ExecutorService timed out");
+      }
       executorService.shutdown();
     } catch (InterruptedException exception) {
       throw new RuntimeException(exception);
